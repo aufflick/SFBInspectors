@@ -117,6 +117,12 @@
 
 //	newWindowFrame.size.width += deltaX;
 	newWindowFrame.size.height += deltaY;
+    
+    // since we're not adjusting the window width, need to adjust content width
+    NSRect newViewFrame = newView.frame;
+    newViewFrame.size.width = newWindowFrame.size.width;
+    
+    newView.frame = newViewFrame;
 	
 	[[self window] setFrame:newWindowFrame display:YES animate:YES];
 	
