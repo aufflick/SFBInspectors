@@ -5,6 +5,8 @@
 
 #import "SFBInspectorView.h"
 #import "SFBInspectorPane.h"
+#import "SFBInspectorPaneBody.h"
+
 
 @interface SFBInspectorView (Private)
 - (void) inspectorPaneFrameDidChange:(NSNotification *)notification;
@@ -107,9 +109,12 @@
 	paneFrame.origin = NSZeroPoint;
 
 	SFBInspectorPane *pane = [[[SFBInspectorPane alloc] initWithFrame:paneFrame] autorelease];
+    //[pane setCollapsed:YES animate:NO];
 
 	[pane setTitle:title];
 	[[pane bodyView] addSubview:paneBody];
+    pane.autoresizingMask |= NSViewWidthSizable;
+    [pane bodyView].autoresizingMask |= NSViewWidthSizable;
 
 	[self addSubview:pane];	
 
@@ -128,6 +133,14 @@
 	[vc setTitle:title];
 	
 	[self addInspectorPaneController:vc];
+}
+
+- (void)removeAllInspectorPanes
+{
+    for(NSView *inspectorPane in [[self subviews] copy]) {
+        if([inspectorPane isKindOfClass:[SFBInspectorPane class]])
+            [inspectorPane removeFromSuperview];
+    }
 }
 
 @end

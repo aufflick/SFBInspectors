@@ -1,3 +1,4 @@
+
 /*
  *  Copyright (C) 2009, 2010, 2011 Stephen F. Booth <me@sbooth.org>
  *  All Rights Reserved
@@ -14,5 +15,6 @@
 
 - (void) addInspectorPaneController:(NSViewController *)paneController;
 - (void) addInspectorPane:(NSView *)paneBody title:(NSString *)title;
+- (void)removeAllInspectorPanes;
 
 @end
