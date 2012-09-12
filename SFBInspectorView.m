@@ -109,18 +109,19 @@
 	paneFrame.origin = NSZeroPoint;
 
 	SFBInspectorPane *pane = [[[SFBInspectorPane alloc] initWithFrame:paneFrame] autorelease];
-    //[pane setCollapsed:YES animate:NO];
 
 	[pane setTitle:title];
 	[[pane bodyView] addSubview:paneBody];
     pane.autoresizingMask |= NSViewWidthSizable;
     [pane bodyView].autoresizingMask |= NSViewWidthSizable;
-
-	[self addSubview:pane];	
+    
+	[self addSubview:pane];
+    
+    [pane setCollapsed:YES animate:NO];
 
 	// Lay out the panes correctly
 	[self layoutSubviews];
-	
+    	
 }
 
 - (void) addInspectorPane:(NSView *)paneBody title:(NSString *)title
